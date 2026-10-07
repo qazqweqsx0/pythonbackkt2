@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers.tasks import graphql_app
+from strawberry.fastapi import GraphQLRouter
+from routers.tasks import schema
 from config import FRONTEND_URL
 
 app = FastAPI()
@@ -13,6 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+graphql_app = GraphQLRouter(schema)
 app.include_router(graphql_app, prefix="/graphql")
 
 @app.get("/")

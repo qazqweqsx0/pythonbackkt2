@@ -2,7 +2,6 @@ import strawberry
 from typing import List
 from models.task import Category
 from models.task import Task
-from strawberry.fastapi import GraphQLRouter
 
 tasks_db = [
     Task(id=strawberry.ID("1"), title="Изучить GraphQL", description="...",
@@ -51,5 +50,3 @@ class Mutation:
         return None
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
-
-graphql_app = GraphQLRouter(schema)
